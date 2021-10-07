@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+// React-router
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// End React-router
 
-function App() {
+// Components
+import Home from "./pages/Home";
+import AddEdit from "./pages/AddEdit";
+import About from "./pages/About";
+import View from "./pages/View";
+import Header from "./components/Header";
+// End Components
+
+// React Tostify
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+// End React Tostify
+
+const App = () => {
+ 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Header />
+      <ToastContainer position="top-center" />
+      <Switch>
+        <Route exact path="/" component={Home}></Route>
+        <Route path="/add" component={AddEdit}></Route>
+        <Route path="/update/:id" component={AddEdit}></Route>
+        <Route path="/view/:id" component={View}></Route>
+        <Route path="/about" component={About}></Route>
+      </Switch>
+    </Router>
   );
-}
+};
 
 export default App;
